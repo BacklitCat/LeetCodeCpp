@@ -58,6 +58,8 @@ void dij(int s) {
             if (new_dest < min_dest) { // 如果更短，则更新d数组
                 d[v] = new_dest;
                 q.push({v, new_dest}); // 将节点v加入队列，当前距离是必须的，每次要pop最小的
+            } else{
+                q.push({v, d[v]}); // 删除此行似乎不影响？
             }
         }
     }
