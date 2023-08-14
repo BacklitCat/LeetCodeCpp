@@ -8,14 +8,14 @@ using namespace std;
 const int N = 1e5;
 
 //d[N] 是一个数组，用于存储源点到各个顶点的最短距离，初始值为无穷大。在Dijkstra算法中，d[N] 会不断更新，直到找到最优解。
-//v[N] 是一个数组，用于记录顶点是否已经访问过，初始值为0。在Dijkstra算法中，v[N] 会防止重复访问已经确定最短距离的顶点。
+//visited[N] 是一个数组，用于记录顶点是否已经访问过，初始值为0。在Dijkstra算法中，visited[N] 会防止重复访问已经确定最短距离的顶点。
 //head[N] 是一个数组，用于存储以每个顶点为起点的最后一条边的编号，初始值为-1。在链式的存储方式中，head[N] 可以快速找到每个顶点的邻接边。
 //cnt_edge 是一个变量，用于记录边的个数，初始值为0。在链式的存储方式中，cnt_edge 可以作为边的编号，也可以作为边数组的索引。
 
-int n, m, d[N], v[N], head[N], cnt_edge;
+int n, m, d[N], visited[N], head[N], cnt_edge;
 
 struct Edge {
-    int to, val, next;
+    int v, w, next;
 } edge[N * 2];
 
 struct Node {
@@ -28,8 +28,8 @@ struct Node {
 priority_queue<Node> q;
 
 void add_edge(int u, int v, int w) {
-    edge[cnt_edge].to = v;
-    edge[cnt_edge].val = w;
+    edge[cnt_edge].v = v;
+    edge[cnt_edge].w = w;
     edge[cnt_edge].next = head[u];
     head[u] = cnt_edge++;
 }
@@ -39,11 +39,11 @@ void dij(int s) {
     while(!q.empty()) {
         struct Node top = q.top();
         q.pop();
-        if(v[top.pos]) continue;
-        v[top.pos] = 1;
+        if(visited[top.pos]) continue;
+        visited[top.pos] = 1;
         for(int i = head[top.pos]; i != -1; i = edge[i].next) {
-            int to_val = top.val + edge[i].val;
-            int to_pos = edge[i].to;
+            int to_val = top.val + edge[i].w;
+            int to_pos = edge[i].v;
             if(d[to_pos] > to_val) {
                 d[to_pos] = to_val;
                 q.push({to_val, to_pos});
@@ -58,6 +58,6 @@ void init(int s) {//s为源点
     }
     while(!q.empty()) q.pop(); // 确保队列空，不反复执行不用此行
     memset(head, -1, sizeof head);
-    memset(v, 0, sizeof v);
+    memset(visited, 0, sizeof visited);
     cnt_edge = 0;
 }
