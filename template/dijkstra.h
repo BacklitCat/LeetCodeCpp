@@ -53,7 +53,7 @@ void dij(int s) {
             int min_dest = d[edge[u].v]; // 已知到v的目前最短路径
             if (new_dest < min_dest) { // 如果更短，则更新d数组
                 d[edge[u].v] = new_dest;
-                q.push({d[edge[u].v],new_dest});
+                q.push({edge[u].v,new_dest});
             }
         }
     }
