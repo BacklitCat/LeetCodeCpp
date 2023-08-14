@@ -30,6 +30,7 @@ struct Node {
 priority_queue<Node> q;
 
 // add_edge 将从u到v的边，添加到链式邻接表，w是权重，dij要求w必须非负
+// 注意，u和v是节点的下标，由输入决定
 void add_edge(int u, int v, int w) {
     edge[edge_idx].v = v;
     edge[edge_idx].w = w;
@@ -48,12 +49,15 @@ void dij(int s) {
         if (visited[top.idx]) continue;
         visited[top.idx] = 1;
         // 开始 visit，即遍历每一个当前点的邻接点，更新最短路径
-        for (int u = head[top.idx]; u != -1; u = edge[u].next) {
-            int new_dest = d[top.idx] + edge[u].w; // 新的路径长度
-            int min_dest = d[edge[u].v]; // 已知到v的目前最短路径
+        int u = top.idx;
+        for (int i = head[u]; i != -1; i = edge[i].next) {
+            // 注意：此时i是edge的遍历下标，不是节点的
+            int v = edge[i].v, w = edge[i].w;
+            int new_dest = d[u] + w; // 从s到v的新的路径长度
+            int min_dest = d[v]; // 已知从s到v的目前最短路径
             if (new_dest < min_dest) { // 如果更短，则更新d数组
-                d[edge[u].v] = new_dest;
-                q.push({edge[u].v,new_dest});
+                d[v] = new_dest;
+                q.push({v, new_dest}); // 将节点v加入队列，当前距离是必须的，每次要pop最小的
             }
         }
     }
