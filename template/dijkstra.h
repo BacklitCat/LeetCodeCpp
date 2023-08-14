@@ -27,11 +27,11 @@ struct Node {
 
 priority_queue<Node> q;
 
-void add_edge(int from, int to, int val) {
-    edge[cnt_edge].to = to;
-    edge[cnt_edge].val = val;
-    edge[cnt_edge].next = head[from];
-    head[from] = cnt_edge++;
+void add_edge(int u, int v, int w) {
+    edge[cnt_edge].to = v;
+    edge[cnt_edge].val = w;
+    edge[cnt_edge].next = head[u];
+    head[u] = cnt_edge++;
 }
 
 void dij(int s) {
@@ -56,7 +56,7 @@ void init(int s) {//s为源点
     for(int i = 0; i <= n; ++i)  {
         if(i != s) d[i] = 0x3f3f3f3f;
     }
-    while(!q.empty()) q.pop();
+    while(!q.empty()) q.pop(); // 确保队列空，不反复执行不用此行
     memset(head, -1, sizeof head);
     memset(v, 0, sizeof v);
     cnt_edge = 0;
