@@ -54,10 +54,10 @@ void dij(int s) {
 
 void init(int s) {//s为源点
     for(int i = 0; i <= n; ++i)  {
-        if(i != s) d[i] = INT_MAX;
+        if(i != s) d[i] = 0x3f3f3f3f;
     }
     while(!q.empty()) q.pop();
-    memset(head, -1, sizeof(head));
-    memset(v, 0, sizeof(v));
+    memset(head, -1, sizeof head);
+    memset(v, 0, sizeof v);
     cnt_edge = 0;
 }
