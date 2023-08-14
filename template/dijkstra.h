@@ -1,5 +1,6 @@
 #include <queue>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -56,7 +57,7 @@ void init(int s) {//s为源点
         if(i != s) d[i] = INT_MAX;
     }
     while(!q.empty()) q.pop();
-    memset(head, -1, sizeof head);
-    memset(v, 0, sizeof v);
+    memset(head, -1, sizeof(head));
+    memset(v, 0, sizeof(v));
     cnt_edge = 0;
 }
