@@ -30,8 +30,8 @@ priority_queue<Node> q;
 void add_edge(int u, int v, int w) {
     edge[cnt_edge].v = v;
     edge[cnt_edge].w = w;
-    edge[cnt_edge].next = head[u];
-    head[u] = cnt_edge++;
+    edge[cnt_edge].next = head[u]; // 更新当前边的next指针
+    head[u] = cnt_edge++; // head 指针指向新边
 }
 
 void dij(int s) {
