@@ -15,7 +15,7 @@ public:
         // 单中心
         for (i = 1; i < s.size() - 1; i++) {
             for (l = i - 1, r = i + 1; l >= 0 && r <= s.size() - 1; l--, r++) {
-                if (s.substr(l, 1) == s.substr(r, 1)) {
+                if (s[l] == s[r]) {
 //                    cout<<"temp:"<<s.substr(l, r - l + 1)<<endl;
                     if (r - l + 1 > count) {
                         count = max(count, r - l + 1);
@@ -35,7 +35,7 @@ public:
                 res = s.substr(i, 2);
             }
             for (l = i - 1, r = i + 2; l >= 0 && r <= s.size() - 1; l--, r++) {
-                if (s.substr(l, 1) == s.substr(r, 1)) {
+                if (s[l] == s[r]) {
                     if (r - l + 1 > count) {
                         count = max(count, r - l + 1);
                         res = s.substr(l, r - l + 1);
