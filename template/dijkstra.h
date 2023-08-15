@@ -40,7 +40,7 @@ void add_edge(int u, int v, int w) {
 
 // dij 遍历；s:source 源点，从s开始遍历所有的点
 void dij(int s) {
-    q.push({0, s});
+    q.push({s, 0});
     while (!q.empty()) {
         // 从大根堆取堆顶
         Node top = q.top();
@@ -58,8 +58,6 @@ void dij(int s) {
             if (new_dest < min_dest) { // 如果更短，则更新d数组
                 d[v] = new_dest;
                 q.push({v, new_dest}); // 将节点v加入队列，当前距离是必须的，每次要pop最小的
-            } else{
-                q.push({v, d[v]}); // 删除此行似乎不影响？
             }
         }
     }
@@ -68,6 +66,7 @@ void dij(int s) {
 void init(int s) {//s为源点
     for (int i = 0; i <= n; ++i) {
         if (i != s) d[i] = 0x3f3f3f3f;
+        else if(i==s) d[i] = 0;
     }
     while (!q.empty()) q.pop(); // 确保队列空，不反复执行不用此行
     memset(head, -1, sizeof head); // nullptr 用-1代替

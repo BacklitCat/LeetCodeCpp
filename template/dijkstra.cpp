@@ -1,8 +1,8 @@
 #include "dijkstra.h"
 
 /*
-input n个节点 m条边
- 6 10
+input n个节点 m条边 源点s
+ 6 10 0
  0 1 1
  0 2 3
  1 2 1
@@ -17,16 +17,40 @@ input n个节点 m条边
  output
  0 1 2 4 3 7
 
+ input
+ 4 3 1
+ 1 0 1
+ 1 2 1
+ 2 3 1
+
+ output
+ 1 0 1 2
+
+input
+ 2 1 0
+ 0 1 1
+
+ output
+ 0 1
+
+ input
+ 2 1 1
+ 0 1 1
+
+ output
+ INF 0
+
  */
 int main() {
-    while (cin >> n >> m) {
-        init(0);
+    int s;
+    while (cin >> n >> m >> s) {
+        init(s);
         for (int i = 1; i <= m; ++i) {
             int from, to, val;
             cin >> from >> to >> val;
             add_edge(from, to, val);
         }
-        dij(0);
+        dij(s);
         for (int i = 0; i < n; ++i) {
             cout << d[i] << " ";
         }
