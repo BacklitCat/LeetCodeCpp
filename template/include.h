@@ -8,6 +8,8 @@
 #include <cstdlib> // rand
 #include <queue> // queue,priority_queue
 #include <utility> // pair
+#include <cstdio> // printf
+#include <cstdint> // uint32_t
 
 using namespace std;
 
