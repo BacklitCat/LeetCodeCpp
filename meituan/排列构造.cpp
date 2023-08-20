@@ -4,7 +4,7 @@ using namespace std;
 
 /*
  小美的排列构造
- 
+
  两两求和尽可能相近
 
  2
