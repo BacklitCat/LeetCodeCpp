@@ -4,7 +4,7 @@
 using namespace std;
 
 /*
- 小美的外卖订单
+ 小美的外卖订单 - 满减与折扣
  https://www.nowcoder.com/exam/test/51799538/summary?pid=51799538&examPageSource=Company&testCallback=https%3A%2F%2Fwww.nowcoder.com%2Fexam%2Fcompany%3FcurrentTab%3Drecommand%26jobId%3D100%26selectStatus%3D0%26tagIds%3D179&testclass=%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91
  注意，输入可能脏，要校验
  */
