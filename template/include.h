@@ -10,6 +10,7 @@
 #include <utility> // pair
 #include <cstdio> // printf
 #include <cstdint> // uint32_t
+#include <cmath> // pow
 
 using namespace std;
 
