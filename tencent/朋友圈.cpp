@@ -15,17 +15,17 @@ const int N = 1e5;
 int father[N];
 
 // user <user,count>
-unordered_map<int, long> fa_addr;
+unordered_map<int, long> user_count;
 
 
 void init() {
     memset(father, -1, sizeof father);
-    fa_addr.clear();
+    user_count.clear();
 }
 
 // 查找u的根，顺带优化高度
 int find(int u) {
-    if(father[u] == -1){
+    if (father[u] == -1) {
         father[u] = u;
         return u;
     }
@@ -42,31 +42,31 @@ void merge(int u, int v) {
     int u_fa = find(u);
     int v_fa = find(v);
 
-    int u_fa_count, v_fa_count;
+    int u_user_count, v_user_count;
 
-    if (fa_addr[u_fa]==0) {
-        u_fa_count = 1;
+    if (user_count[u_fa] == 0) {
+        u_user_count = 1;
     } else {
-        u_fa_count = fa_addr[u_fa];
-        fa_addr.erase(u_fa); // 删除ufa
+        u_user_count = user_count[u_fa];
+        user_count.erase(u_fa); // 删除ufa
     }
 
-    if (fa_addr[v_fa]==0) {
-        v_fa_count = 1;
+    if (user_count[v_fa] == 0) {
+        v_user_count = 1;
     } else {
-        v_fa_count = fa_addr[v_fa];
+        v_user_count = user_count[v_fa];
     }
 
     // 简化，把u并进v
-    fa_addr[v_fa] = v_fa_count + u_fa_count;
+    user_count[v_fa] = v_user_count + u_user_count;
     father[u_fa] = v_fa;
-//    cout << "merge "<< u << " to " << v << " fa_addr[u_fa]="<<fa_addr[u_fa]<<" fa_addr[v_fa]=" <<fa_addr[v_fa]<<endl;
+//    cout << "merge "<< u << " to " << v << "  user_count[u_fa]="<< user_count[u_fa]<<"  user_count[v_fa]=" << user_count[v_fa]<<endl;
 }
 
-long max_count(){
-    long ret=0;
-    for(auto k : fa_addr){
-        ret = max(ret,k.second);
+long max_count() {
+    long ret = 0;
+    for (auto k: user_count) {
+        ret = max(ret, k.second);
     }
     return ret;
 }
@@ -85,7 +85,7 @@ int main() {
             cin >> x >> y;
             merge(x - 1, y - 1);
         }
-        cout << max_count()<<endl;
+        cout << max_count() << endl;
     }
 }
 
