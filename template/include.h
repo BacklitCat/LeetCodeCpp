@@ -11,6 +11,7 @@
 #include <cstdio> // printf
 #include <cstdint> // uint32_t
 #include <cmath> // pow
+#include <numeric> // accumulate
 
 using namespace std;
 
