@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream> // stringstream
-#include <algorithm> //sort
+#include <algorithm> //sort,min_element,max_element
 #include <string> //stoi,memset
 #include <cstring> //memset
 #include <unordered_map>
