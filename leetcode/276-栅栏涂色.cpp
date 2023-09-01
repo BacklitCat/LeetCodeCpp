@@ -2,6 +2,9 @@
 
 using namespace std;
 
+// M 会员题 动态规划
+// https://leetcode.cn/problems/paint-fence/?envType=study-plan-v2&envId=premium-algo-100
+
 class Solution {
 public:
     int numWays(int n, int k) {
